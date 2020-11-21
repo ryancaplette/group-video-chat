@@ -4,7 +4,7 @@
   "description": "A simple video chat utilizing the open web standard WebRTC.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' index.ts"
   },
   "author": "Ryan Caplette",
   "license": "ISC",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^3.0.3"
+    "socket.io": "^3.0.3",
+    "uuid": "^8.3.1"
   }
 }
