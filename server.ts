@@ -1,27 +1,28 @@
 import express, { Application } from "express";
 import { Server as SocketIOServer } from "socket.io";
-import { createServer, Server as HTTPServer } from "https";
+import { createServer as createHTTPSServer, Server as HTTPSServer } from "https";
+import { createServer as createHTTPServer, Server as HTTPServer } from "http";
 import {v4} from "uuid";
 import path from "path";
 import fs from "fs";
 
 export class Server {
-  private httpServer: HTTPServer;
+  private httpServer: HTTPSServer|HTTPServer;
   private app: Application;
   private io: SocketIOServer;
 
   private readonly DEFAULT_PORT = parseInt(process.env.PORT) || 5000;
 
   constructor() {
-    this.initialize();
-  }
-
-  private initialize(): void {
-    this.app = express();
-    this.httpServer = createServer({
+    const ssl:boolean = (process.env.SSL == 'true') || false;
+    const createServer = ssl ? createHTTPSServer : createHTTPServer;
+    const serverOptions = ssl ? {
       key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
       cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-    },this.app)
+    } : {};
+
+    this.app = express();
+    this.httpServer = createServer(serverOptions,this.app)
     this.io = new SocketIOServer(this.httpServer, {
       cors: {
         origin: '*'
