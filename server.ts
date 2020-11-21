@@ -10,7 +10,7 @@ export class Server {
   private app: Application;
   private io: SocketIOServer;
 
-  private readonly DEFAULT_PORT = 5000;
+  private readonly DEFAULT_PORT = parseInt(process.env.PORT) || 5000;
 
   constructor() {
     this.initialize();

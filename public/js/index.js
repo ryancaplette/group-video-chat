@@ -47,7 +47,6 @@ myPeer.on('open', userId => {
 })
 
 socket.on('user-disconnected', userId => {
-    console.log(peers)
     if (peers[userId]) {
       const peerVideo = document.getElementById(userId)
       if (peerVideo) {
