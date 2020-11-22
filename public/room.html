@@ -10,11 +10,16 @@
     <title>Welcome to Ryan's Video Chat</title>
 </head>
 <body>
+    <h3 id="room-name">`Current Room: ${ROOM_ID}`</h3>
     <button onclick="location.href = '/'">Generate New Random Room</button>
     <br>
     <br>
     <input type="text" value="" id="room-link">
     <button onclick="copyRoomLink()">Copy Room Link</button>
+    <br>
+    <br>
+    <input type="text" value="" placeholder="Enter Room Id" id="room-redirect">
+    <button onclick="goLink()">Go</button>
     <br>
     <br>
     <div id="video-feeds"></div>

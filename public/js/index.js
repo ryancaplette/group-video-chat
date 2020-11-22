@@ -1,14 +1,23 @@
-const socket = io.connect("/");
+const socket = io.connect("/")
 const myPeer = new Peer(undefined)
 const peers = {}
 
-const ROOM_ID = window.location.pathname.split('/')[1]
 const VIDEO_FEEDS = document.getElementById('video-feeds')
 const ROOM_LINK = document.getElementById("room-link")
+const ROOM_REDIRECT = document.getElementById("room-redirect")
+const ROOM_ID = window.location.pathname.split('/')[1]
+document.getElementById('room-name').innerText = `Current Room: ${ROOM_ID}`
+document.getElementById('room-redirect').addEventListener("keyup", function(event) {
+    console.log(event)
+    if (event.key === 'Enter') {
+        event.preventDefault()
+        goLink()
+    }
+})
 
-// WebRTC requires https on most browsers
+// most browsers require https for WebRTC to work
 if (!navigator.mediaDevices && location.protocol !== 'https:') {
-    location.replace(`https:${location.href.substring(location.protocol.length)}`);
+    location.replace(`https:${location.href.substring(location.protocol.length)}`)
 }
 
 navigator.mediaDevices.getUserMedia({
@@ -62,14 +71,18 @@ socket.on('user-disconnected', userId => {
 })
 
 function addStreamToVideoFeed(video, stream) {
-    video.autoplay = true;
+    video.autoplay = true
     video.srcObject = stream
     VIDEO_FEEDS.append(video)
 }
 
 ROOM_LINK.value = window.location
 function copyRoomLink() {
-  ROOM_LINK.select();
-  ROOM_LINK.setSelectionRange(0, 99999);
-  document.execCommand("copy");
+  ROOM_LINK.select()
+  ROOM_LINK.setSelectionRange(0, 99999)
+  document.execCommand("copy")
+}
+
+function goLink() {
+  window.location = ROOM_REDIRECT.value
 }

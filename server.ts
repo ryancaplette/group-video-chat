@@ -1,42 +1,38 @@
-import express, { Application } from "express";
-import { Server as SocketIOServer } from "socket.io";
-import { createServer as createHTTPSServer, Server as HTTPSServer } from "https";
-import { createServer as createHTTPServer, Server as HTTPServer } from "http";
-import {v4} from "uuid";
-import path from "path";
-import fs from "fs";
+import express, { Application } from "express"
+import { Server as SocketIOServer } from "socket.io"
+import { createServer as createHTTPSServer, Server as HTTPSServer } from "https"
+import { createServer as createHTTPServer, Server as HTTPServer } from "http"
+import {v4} from "uuid"
+import path from "path"
+import fs from "fs"
 
 export class Server {
-  private httpServer: HTTPSServer|HTTPServer;
-  private app: Application;
-  private io: SocketIOServer;
+  private httpServer: HTTPSServer|HTTPServer
+  private app: Application
+  private io: SocketIOServer
 
-  private readonly DEFAULT_PORT = parseInt(process.env.PORT) || 5000;
+  private readonly DEFAULT_PORT = parseInt(process.env.PORT) || 5000
 
   constructor() {
-    const ssl:boolean = (process.env.SSL == 'true') || false;
-    const createServer = ssl ? createHTTPSServer : createHTTPServer;
+    const ssl:boolean = (process.env.SSL == 'true') || false
+    const createServer = ssl ? createHTTPSServer : createHTTPServer
     const serverOptions = ssl ? {
       key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
       cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-    } : {};
+    } : {}
 
-    this.app = express();
+    this.app = express()
     this.httpServer = createServer(serverOptions,this.app)
-    this.io = new SocketIOServer(this.httpServer, {
-      cors: {
-        origin: '*'
-      }
-    });
+    this.io = new SocketIOServer(this.httpServer)
 
-    this.serveViews();
-    this.serveRoutes();
-    this.signalingProtocol();
+    this.serveViews()
+    this.serveRoutes()
+    this.signalingProtocol()
   }
 
   private serveViews(): void {
     // this.app.set('view engine', 'ejs')
-    this.app.use(express.static(path.join(__dirname, "public")));
+    this.app.use(express.static(path.join(__dirname, "public")))
   }
 
   private serveRoutes(): void {
@@ -45,7 +41,7 @@ export class Server {
     })
     
     this.app.get('/:room', (req, res) => {
-        res.sendFile('./public/room.html', { root: __dirname });
+        res.sendFile('./public/room.html', { root: __dirname })
     })
   }
 
@@ -58,12 +54,12 @@ export class Server {
                 socket.to(roomId).broadcast.emit('user-disconnected', userId)
             })
         })
-    });
+    })
   }
 
   public listen(callback: (port: number) => void): void {
     this.httpServer.listen(this.DEFAULT_PORT, () => {
-      callback(this.DEFAULT_PORT);
-    });
+      callback(this.DEFAULT_PORT)
+    })
   }
 }
