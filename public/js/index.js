@@ -79,7 +79,6 @@ socket.on('user-disconnected', userId => {
 
 function addStreamToVideoFeed(video, stream) {
     video.autoplay = true
-    video.muted = true
     video.playsInline = true
     video.srcObject = stream
     VIDEO_FEEDS.append(video)
