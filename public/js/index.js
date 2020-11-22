@@ -8,7 +8,6 @@ const ROOM_REDIRECT = document.getElementById("room-redirect")
 const ROOM_ID = window.location.pathname.split('/')[1]
 document.getElementById('room-name').innerText = `Current Room: ${ROOM_ID}`
 document.getElementById('room-redirect').addEventListener("keyup", function(event) {
-    console.log(event)
     if (event.key === 'Enter') {
         event.preventDefault()
         goLink()
@@ -41,7 +40,18 @@ navigator.mediaDevices.getUserMedia({
     socket.on('new-user', userId => {
         connectWithNewUser(userId, stream)
     })
+
+    joinRoom()
 })
+
+function joinRoom() {
+    if(myPeer.id !== null){
+        socket.emit('joining-room', ROOM_ID, myPeer.id)
+    }
+    else{
+        setTimeout(joinRoom, 250);
+    }
+}
 
 function connectWithNewUser(userId, stream) {
     const call = myPeer.call(userId, stream)
@@ -56,9 +66,6 @@ function connectWithNewUser(userId, stream) {
     peers[userId] = call
 }
 
-myPeer.on('open', userId => {
-    socket.emit('joining-room', ROOM_ID, userId)
-})
 
 socket.on('user-disconnected', userId => {
     if (peers[userId]) {
