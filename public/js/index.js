@@ -6,6 +6,11 @@ const ROOM_ID = window.location.pathname.split('/')[1]
 const VIDEO_FEEDS = document.getElementById('video-feeds')
 const ROOM_LINK = document.getElementById("room-link")
 
+// WebRTC requires https on most browsers
+if (!navigator.mediaDevices.getUserMedia && location.protocol !== 'https:') {
+    location.replace(`https:${location.href.substring(location.protocol.length)}`);
+}
+
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
