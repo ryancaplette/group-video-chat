@@ -78,7 +78,9 @@ socket.on('user-disconnected', userId => {
 })
 
 function addStreamToVideoFeed(video, stream) {
-    video.autoplay = true
+    video.addEventListener('loadedmetadata', () => {
+        video.play()
+    })
     video.srcObject = stream
     VIDEO_FEEDS.append(video)
 }
