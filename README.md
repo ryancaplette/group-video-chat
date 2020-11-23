@@ -1,6 +1,6 @@
 # Group Video Chat
 
-[Live link: video.ryan.chat](https://video.ryan.chat)
+[Live at: https://video.ryan.chat](https://video.ryan.chat)
 
 ## Description
 
