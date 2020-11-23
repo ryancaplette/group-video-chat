@@ -31,7 +31,6 @@ export class Server {
   }
 
   private serveViews(): void {
-    // this.app.set('view engine', 'ejs')
     this.app.use(express.static(path.join(__dirname, "public")))
   }
 
