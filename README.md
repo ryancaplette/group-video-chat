@@ -28,4 +28,4 @@ Simply connect with a friend to the same room url and accept your browser's requ
 
 * Make sure you are accepting your browsers request to allow the use of your video/audio devices
 
-* Some older devices and browsers may not work and some mobile devices may have security restrictions that prevent auto playing of streams without user gestures
+* Some older devices and browser's may not work and some mobile devices may have security restrictions that prevent auto playing of streams without user gestures
