@@ -22,7 +22,7 @@ In it's present state this video chat application serves as a foundationary step
 
 ## Usage 
 
-Simply connect with a friend to the same room url and accept your browsers request to access your video/audio
+Simply connect with a friend to the same room url and accept your browser's request to access video/audio
 
 ## Troubleshooting
 
