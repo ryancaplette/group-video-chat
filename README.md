@@ -12,11 +12,11 @@ In it's present state this video chat application serves as a foundationary step
 
 ## Current Features
 
-* group video chat
+* Group video chat
 
-* sharable room urls
+* Sharable room urls
 
-* limitless room creation
+* Limitless room creation
 
 * End-to-end encryption
 
