@@ -6,7 +6,7 @@
 
 A group video chat application which facilitates peer to peer connections
 
-In it's present state this video chat application serves as a foundationary step toward integrating and solving some of the features I find zoom to be lacking for certain use cases. I built this video chat application to eventually integrate features I wish zoom had and to solve frustrating zoom limitations like maximum number of breakout rooms allowed per session which won't be a concern with this peer-to-peer framework.. (see issues tab for additional and updated examples of future feature requests)
+In it's present state this video chat application serves as a foundationary step towards integrating some of the features I wish zoom had. Like having realtime feedback statuses between instructor/student roles and solving zoom limitations like maximum number of breakout rooms allowed which won't be a concern with this peer-to-peer framework..
 
 ![Group Video Chat Demo](assets/ryan-chat.gif)
 
@@ -26,6 +26,6 @@ Simply connect with a friend to the same room url and accept your browser's requ
 
 ## Troubleshooting
 
-* Make sure you are accepting your browsers request to allow the use of your video/audio devices
+* Make sure you are accepting your browser's request to allow the use of your video/audio devices
 
-* Some older devices and browser's may not work and some mobile devices may have security restrictions that prevent auto playing of streams without user gestures
+* Some older devices and browsers may not work and some mobile devices may have security restrictions that prevent auto playing of streams without user gestures
