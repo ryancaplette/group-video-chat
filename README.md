@@ -20,6 +20,14 @@ In it's present state this video chat application serves as a foundationary step
 
 * End-to-end encryption
 
+## Install
+
+* Clone this repository
+* npm install
+* npm start
+
+
+
 ## Usage 
 
 Simply connect with a friend to the same room url and accept your browser's request to access video/audio
