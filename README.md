@@ -27,6 +27,7 @@ In it's present state this video chat application serves as a foundationary step
 npm install
 npm start
 ```
+* Listening on http://localhost:5000 by default
 
 
 
