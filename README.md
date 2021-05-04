@@ -29,6 +29,12 @@ npm start
 ```
 * Listening on http://localhost:5000 by default
 
+### Install Optional
+
+* You can also use a self signed cert (various tutorials online)
+* Make sure your browser has the security settings allowed to accept unsafe local connections (chrome: chrome://flags/#allow-insecure-localhost , click enable)
+* ```npm run dev```
+
 
 
 ## Usage 
