@@ -23,8 +23,10 @@ In it's present state this video chat application serves as a foundationary step
 ## Install
 
 * Clone this repository
-* npm install
-* npm start
+```
+npm install
+npm start
+```
 
 
 
